@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Autofac" Version="7.0.0"/>
+        <PackageReference Include="AWSSDK.SimpleEmail" Version="3.7.100.78"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5"/>
+        <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1"/>
+        <PackageReference Include="Microsoft.Identity.Web" Version="2.0.8-preview"/>
+        <PackageReference Include="MongoDB.Driver" Version="2.19.0"/>
+        <PackageReference Include="Npgsql" Version="7.0.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\SimLoad.Common\SimLoad.Common.csproj"/>
+        <ProjectReference Include="..\SimLoad.Server.Data\SimLoad.Server.Data.csproj"/>
+    </ItemGroup>
+
+</Project>

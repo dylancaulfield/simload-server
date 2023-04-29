@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+entity LoadGenerator
+actor User
+entity SimLoad
+entity Redis
+
+LoadGenerator -[#red]> SimLoad: SignalR: Subscribe
+LoadGenerator -> SimLoad: Announce Available
+User -> SimLoad: Request Test Options
+SimLoad -> User: Return Scenarios + Available Load Generators
+User -> SimLoad: Request Test Start
+SimLoad -[#red]> Redis: Send Test Instruction
+Redis -[#red]> SimLoad: Distribute Test Instruction
+SimLoad -[#red]> LoadGenerator: SignalR: Send Test Instruction
+LoadGenerator -> SimLoad: Request Test Data
+SimLoad -> LoadGenerator: Return Test Data
+LoadGenerator -> SimLoad: Announce Unavailable
+
+...Test Begins...
+LoadGenerator -> SimLoad: Send Results
+note right: Repeatedly in batches
+...Test Completes...
+
+LoadGenerator -> SimLoad: Announce Available
+
+@enduml

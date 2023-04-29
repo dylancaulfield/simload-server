@@ -1,0 +1,62 @@
+@startuml
+'https://plantuml.com/state
+
+[*] --> LoadGenerator: Test Instruction Received
+
+LoadGenerator --> TestRunner: Run Test
+LoadGenerator --> ScenarioProvider: Initialise
+LoadGenerator --> ResultChannel: Initialise
+LoadGenerator: Listen for instructions
+LoadGenerator: Manage test execution
+
+state ResultChannel {
+    Read:
+    Write:
+    
+    Write -> Read
+    
+}
+
+ResultSender <-- ResultChannel.Read
+ResultSender --> [*]: Send Results To Server
+
+ScenarioProvider: Provide random scenarios
+ScenarioProvider: in provided proportions
+
+TestRunner <- ScenarioProvider: Provide Next Scenario
+TestRunner: Continuously calculate
+TestRunner: target user count
+
+TestRunner --> ScenarioRunner: Run Scenario
+
+state InterfaceMethods {
+
+    Log: Log a message
+    Delay: Delay execution
+    Http: Send HTTP request
+    WSChannel: Create WebSocket
+    WSChannel: channel
+    WSMessage: Send WebSocket
+    WSMessage: message
+    
+    Http --> ResultChannel.Write
+    WSChannel --> ResultChannel.Write
+    WSMessage --> ResultChannel.Write
+
+}
+
+state ScenarioRunner {
+    state "Compile C#" as Code: Cache scenario code
+    state "Code Interface" as Interface:
+    
+    Code -> Interface:Call Method
+    Interface --> InterfaceMethods.Log
+    Interface --> InterfaceMethods.Delay
+    Interface --> InterfaceMethods.Http
+    Interface --> InterfaceMethods.WSChannel
+    Interface --> InterfaceMethods.WSMessage
+    
+}
+
+
+@enduml

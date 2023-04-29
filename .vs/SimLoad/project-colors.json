@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d1515842-4052-4ea1-b210-b535e0a938d8": {
+      "ProjectGuid": "d1515842-4052-4ea1-b210-b535e0a938d8",
+      "DisplayName": "SimLoad.LoadGenerator",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+entity UserEmail
+actor User
+entity SimLoad
+entity SES
+
+User -> SimLoad: Create Session
+SimLoad -> SES: Send Verification Code
+SimLoad -> User: Return Encrypted Session
+SES -> UserEmail: Email Verification Code
+User -> UserEmail: Find Email
+UserEmail -> User: Take Verification Code
+User -> SimLoad: Send Verification Code + Session
+SimLoad -> User: Return Access and Refresh Tokens
+
+... Access Token Expired...
+
+User -[#blue]> SimLoad: Send Refresh Token
+SimLoad -[#blue]> User: Return New Access and Refresh Tokens
+
+@enduml

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Autofac" Version="6.4.0"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.6.0-1.final"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\SimLoad.Common\SimLoad.Common.csproj"/>
+        <ProjectReference Include="..\SimLoad.LoadGenerator.Common\SimLoad.LoadGenerator.Common.csproj"/>
+    </ItemGroup>
+
+</Project>
